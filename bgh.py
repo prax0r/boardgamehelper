@@ -1,6 +1,10 @@
+from game import *
 
-
-GameName = input("Enter the Game you are playing: ")
+def get_rule(game_name: str, player_count: int):
+    for game in Game:
+        if game.game_name == game_name:
+            return game.player_count_to_rule.get(player_count, None)
+    return None
 
 def get_player_count():
     while True:
@@ -17,5 +21,10 @@ def get_player_count():
         except ValueError:
             print("Please enter a valid number.")
 
-PlayerCount = get_player_count()
-print(f"Player Count is, {PlayerCount}")
+
+game_name = input("Enter the Game you are playing: ")
+player_count = get_player_count()
+rule = get_rule(game_name, player_count)
+print(f"Player Count is, {player_count}")
+print(f"{rule}")
+
