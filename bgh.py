@@ -22,9 +22,8 @@ def get_player_count():
             print("Please enter a valid number.")
 
 
-game_name = input("Enter the Game you are playing: ")
+game_name = input("Enter the Game you are playing: ").lower()
 player_count = get_player_count()
 rule = get_rule(game_name, player_count)
-print(f"Player Count is, {player_count}")
 print(f"{rule}")
 
