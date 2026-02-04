@@ -2,16 +2,17 @@ from enum import Enum
 
 
 class Rule(Enum):
-    UNO_TWO_PLAYERS = "Mische alle 108 Karten und zieht jeweils 10 Karten"
-    UNO_THREE_TWELVE_PLAYERS = "Mische alle 108 Karten und zieht jeweils 7 Karten"
-    DUNE_ONE_PLAYER = "Dune ein spieler"
-    DUNE_TWO_PLAYERS = "Dune zwei spieler"
-    DUNE_THREE_FOUR_PLAYERS = "Dune 3-4 spieler"
+    UNO_TWO_PLAYERS = "Shuffle all 108 cards, every player draws 10 cards."
+    UNO_THREE_TWELVE_PLAYERS = "Shuffle all 108 cards, every player draws 7 cards."
+    DUNE_ONE_PLAYER = "Why are you playing alone"
+    DUNE_TWO_PLAYERS = "Dune with two players"
+    DUNE_THREE_FOUR_PLAYERS = "dune with four players"
     
 class Game(Enum):
-    UNO = ("uno", {2: Rule.UNO_TWO_PLAYERS.value , **{n: Rule.UNO_THREE_TWELVE_PLAYERS.value for n in range (3, 12)}})
-    DUNE = ("dune", {1: Rule.DUNE_ONE_PLAYER.value , 2: Rule.DUNE_TWO_PLAYERS.value , **{n: Rule.DUNE_THREE_FOUR_PLAYERS.value for n in range (3, 4)}})
+    UNO = ("uno", {2: Rule.UNO_TWO_PLAYERS.value , **{n: Rule.UNO_THREE_TWELVE_PLAYERS.value for n in range (3, 12)}} , "1 hour")
+    DUNE = ("dune", {1: Rule.DUNE_ONE_PLAYER.value , 2: Rule.DUNE_TWO_PLAYERS.value , **{n: Rule.DUNE_THREE_FOUR_PLAYERS.value for n in range (3, 4)}} , "1hour")
            
-    def __init__(self, game_name: str, player_count_to_rule: dict[int, str]):
+    def __init__(self, game_name: str, player_count_to_rule: dict[int, str] , setup_time: str):
         self.game_name = game_name
         self.player_count_to_rule = player_count_to_rule
+        self.setup_time = setup_time
