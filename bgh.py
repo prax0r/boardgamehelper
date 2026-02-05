@@ -4,8 +4,9 @@ def main():
     game_name = input("Enter the Game you are playing: ").lower()
     player_count = get_player_count()
     setup_time_input = input("do you want to know the setup time (y/n)").lower()
-    setup_time = get_setup_time(game, setup_time_input)
+    game = get_dic(game_name)
     rule = get_rule(game_name, player_count)
+    setup_time = get_setup_time(game , setup_time_input)
     print(f"{rule}")
     print(f"{setup_time}")
 
@@ -13,6 +14,12 @@ def get_rule(game_name , player_count):
     for game in Game:
         if game.game_name == game_name:
             return game.player_count_to_rule.get(player_count, None)
+    return None
+
+def get_dic(game_name):
+    for game in Game:
+        if game.game_name == game_name:
+            return game
     return None
 
 def get_setup_time(game , setup_time_input):
