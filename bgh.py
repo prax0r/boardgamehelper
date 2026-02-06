@@ -2,28 +2,32 @@ from game import *
 
 def main():
     game_name = input("Enter the Game you are playing: ").lower()
-    player_count = get_player_count()
-    setup_time_input = input("do you want to know the setup time (y/n)").lower()
     game = get_dic(game_name)
+    if game is None:
+        print(f"{game_name} not found")
+        quit()
+    player_count = get_player_count()
+    setup_time_input = input("do you want to know the setup time (y/n)").lower().strip() in ("y")
     rule = get_rule(game_name, player_count)
     setup_time = get_setup_time(game , setup_time_input)
     print(f"{rule}")
-    print(f"{setup_time}")
+    if setup_time_input == True:
+        print(f"{setup_time}")
 
-def get_rule(game_name , player_count):
+def get_rule(game_name: str , player_count: int):
     for game in Game:
         if game.game_name == game_name:
             return game.player_count_to_rule.get(player_count, None)
     return None
 
-def get_dic(game_name):
+def get_dic(game_name: str):
     for game in Game:
         if game.game_name == game_name:
             return game
     return None
 
-def get_setup_time(game , setup_time_input):
-    if setup_time_input == "y":
+def get_setup_time(game: Game , setup_time_input: bool):
+    if setup_time_input == True:
         return game.setup_time
     return None
 
