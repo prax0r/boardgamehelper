@@ -1,4 +1,4 @@
-from game import *
+from game import Game as Game, Rule as Rule
 
 def main():
     game_name = input("Enter the Game you are playing: ").lower()
